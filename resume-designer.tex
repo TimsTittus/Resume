@@ -1,0 +1,273 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[
+    ignoreheadfoot,
+    top=0.0cm,
+    bottom=0.9cm,
+    left=1.6cm,
+    right=1.6cm,
+    footskip=1.0cm
+]{geometry}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{newunicodechar}
+\newunicodechar{₹}{\textit{[INR]}}
+\usepackage[
+    pdftitle={Tims Tittus - UI/UX \& Product Designer Resume},
+    pdfauthor={Tims Tittus},
+    pdfcreator={LaTeX},
+    colorlinks=true,
+    urlcolor=DesignAccent,
+    linkcolor=DesignAccent
+]{hyperref}
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{iftex}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage[skins,breakable]{tcolorbox}
+
+% ---- ATS-safe, machine-readable text ----
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+\definecolor{InkColor}{RGB}{30, 30, 34}
+\definecolor{DeepInk}{RGB}{24, 23, 27}
+\definecolor{DesignAccent}{RGB}{230, 92, 51}    % warm terracotta/coral accent
+\definecolor{AccentSoft}{RGB}{250, 226, 214}    % pale accent tint for pill fills
+\definecolor{TealAccent}{RGB}{45, 156, 149}      % secondary accent for variety
+\definecolor{SoftGray}{RGB}{112, 112, 118}
+\definecolor{PaleGray}{RGB}{238, 237, 235}
+\definecolor{RuleGray}{RGB}{210, 208, 205}
+\definecolor{CreamText}{RGB}{245, 240, 235}
+
+\color{InkColor}
+\linespread{0.94}\selectfont
+
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}
+  {\needspace{2\baselineskip}\bfseries\Large\color{DeepInk}}
+  {}{0pt}
+  {\raisebox{-1pt}{\textcolor{DesignAccent}{\rule{11pt}{11pt}}}\hspace{6pt}}
+  [\vspace{1pt}{\color{DesignAccent}\titlerule[1.4pt]}\vspace{-1pt}{\color{RuleGray}\titlerule[0.4pt]}]
+
+\titlespacing{\section}{-1pt}{0.14cm}{0.06cm}
+
+\renewcommand\labelitemi{{\small\textcolor{DesignAccent}{$\blacktriangleright$}}}
+
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.03cm, parsep=0.03cm, partopsep=0pt,
+        itemsep=0pt, leftmargin=11pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0cm+0.00001cm}{0cm+0.00001cm}
+}{
+    \end{adjustwidth}
+}
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.3cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \small\color{SoftGray}\secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+\let\hrefWithoutArrow\href
+
+\newtcbox{\skilltag}{on line, arc=6pt, colback=AccentSoft, colframe=DesignAccent!70,
+  boxrule=0.4pt, boxsep=0pt, left=5pt, right=5pt, top=2pt, bottom=2pt,
+  fontupper=\small\color{DeepInk}}
+
+\newtcbox{\skilltagteal}{on line, arc=6pt, colback=TealAccent!12, colframe=TealAccent!70,
+  boxrule=0.4pt, boxsep=0pt, left=5pt, right=5pt, top=2pt, bottom=2pt,
+  fontupper=\small\color{DeepInk}}
+
+\newcommand{\skillgroup}[2]{%
+    {\bfseries\color{DesignAccent}#1}\par\vspace{2pt}
+    #2
+    \par\vspace{6pt}
+}
+
+\newtcolorbox{spotlight}{
+    enhanced, breakable, colback=PaleGray, colframe=DesignAccent,
+    boxrule=0pt, frame hidden, borderline west={2.4pt}{0pt}{DesignAccent},
+    left=10pt, right=8pt, top=5pt, bottom=5pt, arc=1pt,
+    before skip=3pt, after skip=6pt
+}
+
+\begin{document}
+
+\AddToShipoutPictureBG*{%
+  \AtPageUpperLeft{%
+    \color{DeepInk}%
+    \rule[-3.05cm]{\paperwidth}{3.05cm}%
+  }%
+}
+
+\vspace{0.35cm}
+\hspace{-0.05cm}%
+\begin{minipage}[t]{\dimexpr\textwidth\relax}
+    \color{CreamText}
+    {\fontsize{28pt}{28pt}\selectfont\bfseries Tims Tittus}\\[2pt]
+    {\Large\color{DesignAccent}\bfseries UI/UX \& Product Designer}\\[8pt]
+    {\small\color{CreamText!85}
+    \faMapMarker* \ Palai, Kottayam
+    \quad\textcolor{DesignAccent}{$\vert$}\quad
+    \faEnvelope \ \hrefWithoutArrow{mailto:timstittus1@gmail.com}{\color{CreamText!85}timstittus1@gmail.com}
+    \quad\textcolor{DesignAccent}{$\vert$}\quad
+    \faPhone \ \hrefWithoutArrow{tel:+919946116910}{\color{CreamText!85}+91 99461 16910}\\[4pt]
+    \faGlobe \ \hrefWithoutArrow{https://timstittus.vercel.app/}{\color{CreamText!85}timstittus.vercel.app}
+    \quad\textcolor{DesignAccent}{$\vert$}\quad
+    \faLinkedin \ \hrefWithoutArrow{https://linkedin.com/in/tims-tittus/}{\color{CreamText!85}linkedin.com/in/tims-tittus}
+    \quad\textcolor{DesignAccent}{$\vert$}\quad
+    \faGithub \ \hrefWithoutArrow{https://github.com/TimsTittus}{\color{CreamText!85}github.com/TimsTittus}
+    }
+\end{minipage}
+
+\vspace{0.55cm}
+
+\section{Profile}
+\begin{onecolentry}
+\textbf{UI/UX and Product Designer} with a Computer Science background, translating research and technical constraints into clean, usable interfaces. Comfortable owning design end-to-end -- research, wireframing, prototyping, visual/brand design, and design systems -- then collaborating directly with engineering to ship pixel-accurate, responsive products. Fast in Figma, and fluent in both "designer" and "developer."
+\end{onecolentry}
+
+\section{Education}
+
+\begin{twocolentry}{Sept 2023 -- May 2027}
+    \textbf{B.Tech in Computer Science and Engineering (Cybersecurity)}, SJCET, Palai
+\end{twocolentry}
+\vspace{0.02cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item GPA: 8.59 (up to S6)
+    \end{highlights}
+\end{onecolentry}
+
+\section{Design Skills}
+\begin{onecolentry}
+    \skillgroup{Design Tools}{%
+        \skilltag{Figma} \skilltag{Photoshop} \skilltag{Illustrator} \skilltag{Adobe XD} \skilltag{Canva}
+    }
+    \skillgroup{Core Practice}{%
+        \skilltag{Wireframing} \skilltag{Prototyping} \skilltag{Design Systems} \skilltag{Visual Design} \skilltag{Typography} \skilltag{Colour Theory} \skilltag{Responsive Design}
+    }
+    \skillgroup{Research \& Strategy}{%
+        \skilltagteal{User Research} \skilltagteal{Usability Testing} \skilltagteal{User Flows} \skilltagteal{Information Architecture} \skilltagteal{Heuristic Evaluation}
+    }
+    \skillgroup{Design-to-Code}{%
+        \skilltag{HTML/CSS} \skilltag{Tailwind CSS} \skilltag{React} \skilltag{Next.js}
+    }
+\end{onecolentry}
+
+\section{Design Experience}
+
+\begin{twocolentry}{May 2024 -- March 2025}
+    \textbf{Graphic Designer, IEEE SB SJCET}
+\end{twocolentry}
+\vspace{0.02cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Designed and delivered IEEE SB SJCET event branding assets—including posters, social media creatives, and certificates—using Figma, Photoshop, and Illustrator, maintaining IEEE brand standards and enhancing visual consistency, audience engagement, and event participation.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.02cm}
+
+\begin{twocolentry}{April 2025 -- Present}
+    \textbf{Web \& UI Designer, IEEE SB SJCET}
+\end{twocolentry}
+\vspace{0.02cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Redesigned and maintained IEEE SB SJCET's website and microsites, focusing on clean layout hierarchy, accessibility, and mobile responsiveness.
+        \item Built reusable UI components and page templates to keep the visual language consistent across future site updates.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.02cm}
+
+\begin{twocolentry}{June 2025 -- July 2025}
+    \textbf{UI/UX Mentor, The Nexus Project (SJCET Bootcamp)}
+\end{twocolentry}
+\vspace{0.02cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Mentored a student team through the UI/UX design process for a web platform -- user flows, wireframes, and high-fidelity Figma prototypes.
+        \item Reviewed design decisions and gave structured feedback on layout, hierarchy, and interaction patterns before development handoff.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.02cm}
+
+\begin{twocolentry}{2025 -- Present}
+    \textbf{Independent Product Designer, Personal Projects}
+\end{twocolentry}
+\vspace{0.02cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Designed a personal portfolio site with a distinctive dark terminal aesthetic -- custom canvas-based animation, a considered colour system, and clear content hierarchy.
+        \item Leading end-to-end product design for a real-time restaurant platform: ordering flow, order management dashboard, and kitchen display, built for clarity under real-time pressure.
+    \end{highlights}
+\end{onecolentry}
+
+\section{Achievements}
+
+\begin{spotlight}
+    \textbf{\faTrophy\ Hac'KP 2025 -- Kerala Police CyberDome International Hackathon}
+    \begin{highlights}
+        \item Won the hackathon and the Outstanding Performance Award; designed and shipped the front-end product experience for two tools built for INTERPOL and global policing agencies.
+    \end{highlights}
+\end{spotlight}
+
+\begin{onecolentry}
+    \textbf{Smart India Hackathon Prelims}
+    \begin{highlights}
+        \item Designed the interface for a PySide6-based desktop tool for recovering deleted files, focusing on clarity for non-expert users; placed 2nd with a \textrm{₹}10,000 prize.
+    \end{highlights}
+
+    \textbf{Top 250 CTF Finalist}
+    \begin{highlights}
+        \item Ranked in the top 250 internationally in a global CTF, including challenges requiring careful visual/pattern analysis in steganography.
+    \end{highlights}
+\end{onecolentry}
+
+\\section{Certifications}
+\begin{onecolentry}
+    \skilltag{Blockchain Foundation Program -- Kerala Blockchain Academy}
+    \skilltag{Software Design \& Development -- Infosys Springboard}
+    \skilltag{Programming in C -- Infosys Springboard}
+\end{onecolentry}
+
+\end{document}

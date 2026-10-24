@@ -1,0 +1,223 @@
+%% ====================================================================
+%%  BIODATA TEMPLATE  --  one page, A4, pdfLaTeX (Overleaf default works)
+%%
+%%  ONE FILE, TWO USES. Pick the mode on the line below:
+%%     \matrimonialtrue   -> marriage biodata (family, horoscope, expectations)
+%%     \matrimonialfalse  -> job / general biodata (objective, skills, experience)
+%%
+%%  HOW TO USE
+%%   1. Fill the PERSONAL DATA block once (name, contact, photo).
+%%   2. Put a passport-style photo named  photo.jpg  next to this file
+%%      (upload it to Overleaf). If it is missing, a "Paste photo" box shows.
+%%   3. Edit the \field{Label}{Value} lines. Add a row by copying one line.
+%%      Delete any row you do not want to show.
+%%   4. Education rows:   \eduRow{Degree}{Institution}{Year}{Score}
+%% ====================================================================
+\documentclass[10.5pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage[top=1.2cm, bottom=1.2cm, left=1.9cm, right=1.9cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% ====================================================================
+%  MODE SWITCH  (choose ONE)
+% ====================================================================
+\newif\ifmatrimonial
+\matrimonialtrue
+%\matrimonialfalse
+
+% ====================================================================
+%  PERSONAL DATA  (edit once)
+% ====================================================================
+\newcommand{\cvname}{YOUR FULL NAME}
+\newcommand{\cvaddress}{House / Street, Locality, City, State -- PIN}
+\newcommand{\cvphone}{+91 90000 00000}
+\newcommand{\cvemail}{you@email.com}
+\newcommand{\cvphoto}{photo.jpg}
+
+\hypersetup{pdftitle={Biodata - \cvname}, pdfauthor={\cvname}}
+
+% ---------- Look and feel ----------
+\definecolor{accent}{RGB}{30, 30, 30}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\raggedright
+
+\titleformat{\section}{\bfseries\large\scshape\color{accent}}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{0pt}{0.32cm}{0.15cm}
+
+% ---------- Macros ----------
+% Label : Value rows
+\newenvironment{details}{%
+  \par\noindent
+  \tabularx{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{4.6cm}@{\hspace{3pt}:\hspace{8pt}}X@{}}
+}{%
+  \endtabularx\par
+}
+\newcommand{\field}[2]{#1 & #2 \\[1.5pt]}
+
+% Education table
+\newenvironment{eduTable}{%
+  \par\noindent\small
+  \tabularx{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.3cm} X l r@{}}
+  \toprule
+  \textbf{Qualification} & \textbf{Institution / Board} & \textbf{Year} & \textbf{Score} \\
+  \midrule
+}{%
+  \bottomrule
+  \endtabularx\par
+}
+\newcommand{\eduRow}[4]{#1 & #2 & #3 & #4 \\}
+
+\begin{document}
+
+% ====================================================================
+%  HEADER  (name + contact on the left, photo on the right)
+% ====================================================================
+\begin{minipage}[t][3.6cm][t]{0.76\textwidth}
+  \vspace{0pt}
+  {\fontsize{26pt}{30pt}\selectfont\bfseries \cvname}\\[4pt]
+  {\large\scshape\color{gray} Biodata}\\[10pt]
+  \small
+  \textbf{Address:} \cvaddress\\[3pt]
+  \textbf{Phone:} \cvphone\\[3pt]
+  \textbf{Email:} \href{mailto:\cvemail}{\cvemail}
+\end{minipage}\hfill
+\begin{minipage}[t][3.6cm][t]{2.9cm}
+  \vspace{0pt}\raggedleft
+  \IfFileExists{\cvphoto}{%
+    \includegraphics[width=2.9cm,height=3.6cm]{\cvphoto}%
+  }{%
+    \fbox{\parbox[c][3.4cm][c]{2.6cm}{\centering\small\color{gray}Paste\\passport-size\\photo}}%
+  }
+\end{minipage}
+
+% ====================================================================
+%  OBJECTIVE  (job mode only)
+% ====================================================================
+\ifmatrimonial\else
+\section{Career Objective}
+Motivated [degree] graduate seeking a [role] position where I can apply my skills in [area 1] and [area 2] and grow with the organisation.
+\fi
+
+% ====================================================================
+%  PERSONAL DETAILS
+% ====================================================================
+\section{Personal Details}
+\begin{details}
+  \field{Date of Birth}{DD Month YYYY}
+  \ifmatrimonial
+    \field{Time and Place of Birth}{HH:MM AM/PM, City}
+  \fi
+  \field{Age}{XX years}
+  \field{Gender}{Male / Female}
+  \field{Height}{5 ft 10 in}
+  \ifmatrimonial
+    \field{Complexion}{Fair / Wheatish}
+    \field{Marital Status}{Unmarried}
+    \field{Religion / Community}{Religion, Community}
+    \field{Mother Tongue}{Language}
+  \fi
+  \field{Languages Known}{English, Hindi, [Language]}
+  \field{Nationality}{Indian}
+  \field{Diet}{Vegetarian / Non-vegetarian}
+\end{details}
+
+% ====================================================================
+%  FAMILY DETAILS  (matrimonial mode only)
+% ====================================================================
+\ifmatrimonial
+\section{Family Details}
+\begin{details}
+  \field{Father's Name}{Name -- Occupation}
+  \field{Mother's Name}{Name -- Occupation}
+  \field{Siblings}{N brother(s) / N sister(s) -- married / unmarried}
+  \field{Family Type}{Nuclear / Joint}
+  \field{Native Place}{Town, District, State}
+  \field{Family Contact}{+91 90000 00000}
+\end{details}
+\fi
+
+% ====================================================================
+%  EDUCATION  (add or delete rows)
+% ====================================================================
+\section{Education}
+\begin{eduTable}
+  \eduRow{B.Tech (Computer Science and Engineering)}{College Name, University}{2023--2027}{CGPA 8.50}
+  \eduRow{Class XII}{School Name, Board}{2023}{95\%}
+  \eduRow{Class X}{School Name, Board}{2021}{96\%}
+\end{eduTable}
+
+% ====================================================================
+%  PROFESSION  (matrimonial mode) / SKILLS + EXPERIENCE (job mode)
+% ====================================================================
+\ifmatrimonial
+\section{Profession}
+\begin{details}
+  \field{Occupation}{Designation, Company / Institution}
+  \field{Work Location}{City}
+  \field{Annual Income}{Rs. X lakh (optional -- delete if not needed)}
+\end{details}
+\else
+\section{Technical and Professional Skills}
+\begin{details}
+  \field{Languages}{Python, C++, Java, SQL}
+  \field{Tools and Platforms}{Git, Linux, Docker, MS Office}
+  \field{Soft Skills}{Communication, Leadership, Teamwork}
+\end{details}
+
+\section{Experience and Achievements}
+\begin{itemize}[leftmargin=14pt, itemsep=2pt, topsep=3pt]
+  \item \textbf{Role, Organisation} (Mon YYYY -- Mon YYYY): one line on what you did and the result.
+  \item \textbf{Project / Award}: one line with a number or rank.
+\end{itemize}
+\fi
+
+% ====================================================================
+%  HOROSCOPE / OTHER  (matrimonial mode only -- delete if not wanted)
+% ====================================================================
+\ifmatrimonial
+\section{Other Details}
+\begin{details}
+  \field{Gotra / Star (Nakshatra)}{Gotra / Star}
+  \field{Rasi / Manglik}{Rasi / Yes or No}
+  \field{Hobbies and Interests}{Reading, Travelling, Music}
+\end{details}
+
+\section{Partner Expectations}
+Brief and respectful, 1 to 2 lines: preferred age range, education, values, location.
+\else
+\section{Hobbies and Interests}
+Reading, Travelling, Music.
+\fi
+
+% ====================================================================
+%  DECLARATION
+% ====================================================================
+\section{Declaration}
+I hereby declare that the information furnished above is true and correct to the best of my knowledge.
+
+\vspace{0.4cm}
+\noindent
+\begin{minipage}[t]{0.5\textwidth}
+  \textbf{Date:} DD / MM / YYYY\\[4pt]
+  \textbf{Place:} City
+\end{minipage}\hfill
+\begin{minipage}[t]{0.4\textwidth}
+  \raggedleft
+  \rule{4.5cm}{0.4pt}\\[2pt]
+  \textbf{\cvname}
+\end{minipage}
+
+\end{document}

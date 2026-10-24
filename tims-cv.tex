@@ -1,0 +1,200 @@
+%% ====================================================================
+%%  ATS-FRIENDLY ENGINEERING CV  --  RenderCV-style look, simpler macros
+
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[ignoreheadfoot, top=1.2cm, bottom=1.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 0, 0}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{needspace}
+\usepackage{iftex}
+\usepackage{newunicodechar}
+\newunicodechar{₹}{\textit{INR }}   % rupee sign fallback so pdfLaTeX does not crash
+
+% ---------- ATS: machine-readable PDF ----------
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+\usepackage{charter}
+
+% ====================================================================
+%  PERSONAL DATA  (edit once)
+% ====================================================================
+\newcommand{\cvname}{Your Full Name}
+\newcommand{\cvlocation}{City, State}
+\newcommand{\cvemail}{you@email.com}
+\newcommand{\cvphone}{+91 90000 00000}
+\newcommand{\cvlinkedin}{linkedin.com/in/yourid}
+\newcommand{\cvgithub}{github.com/yourid}
+\newcommand{\cvsite}{yourname.com}      % delete this link in the header if unused
+
+\usepackage[
+    pdftitle={\cvname's CV},
+    pdfauthor={\cvname},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+
+% ---------- Global settings ----------
+\raggedright
+\pagestyle{empty}
+\pagenumbering{gobble}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{-1pt}{0.3cm}{0.2cm}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+
+% ---------- Bullet list ----------
+\newenvironment{highlights}{
+    \begin{itemize}[topsep=0.10cm, parsep=0.10cm, partopsep=0pt, itemsep=0pt, leftmargin=10pt]
+}{
+    \end{itemize}
+}
+
+% ---------- Macros ----------
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcommand{\sep}{\kern5pt$|$\kern5pt}
+\newcommand{\link}[2]{\href{#1}{\underline{#2}}}
+
+% Heading row: bold-left text, right-aligned date/link
+\newcommand{\entry}[2]{%
+    \par\vspace{0.2cm}\noindent
+    \begin{tabularx}{\textwidth}{@{}L r@{}}#1 & #2\end{tabularx}%
+    \par\nopagebreak
+}
+
+% Single line, no bullets (certifications, awards)
+\newcommand{\oneline}[2]{%
+    \par\vspace{0.1cm}\noindent
+    \begin{tabularx}{\textwidth}{@{}L r@{}}#1 & #2\end{tabularx}%
+    \par
+}
+
+% Skill row: {Category}{items}
+\newcommand{\skillrow}[2]{\par\vspace{0.1cm}\noindent\textbf{#1 :} #2\par}
+
+\begin{document}
+
+% ====================================================================
+%  HEADER
+% ====================================================================
+\begin{center}
+    {\fontsize{25pt}{25pt}\selectfont \cvname}\\[6pt]
+    \normalsize
+    \mbox{\cvlocation}\sep
+    \mbox{\href{mailto:\cvemail}{\cvemail}}\sep
+    \mbox{\href{tel:\cvphone}{\cvphone}}\sep
+    \mbox{\href{https://\cvlinkedin}{\cvlinkedin}}\sep
+    \mbox{\href{https://\cvgithub}{\cvgithub}}\sep
+    \mbox{\href{https://\cvsite}{\cvsite}}
+\end{center}
+\vspace{-0.2cm}
+
+% ====================================================================
+%  SUMMARY  (optional -- 2 to 3 lines, tailor per job)
+% ====================================================================
+\section{About Me}
+\textbf{[Degree] undergraduate} with hands-on experience \textbf{building and deploying [type of systems]}, spanning \textbf{[skill area 1], [skill area 2], and [skill area 3]}. Strong in \textbf{[Tech A, Tech B, Tech C]}, with [N] internships/projects and \textbf{[top achievement, e.g. national hackathon wins]}. Seeking [target role].
+
+% ====================================================================
+%  EDUCATION  (students: keep near the top)
+% ====================================================================
+\section{Education}
+\entry{\textbf{B.Tech in Computer Science and Engineering}, University / College Name}{Sept 2023 -- May 2027}
+\begin{highlights}
+    \item CGPA: 8.50 / 10 \quad | \quad Relevant coursework: Data Structures \& Algorithms, Operating Systems, DBMS, Computer Networks, Machine Learning
+\end{highlights}
+% \entry{\textbf{Class XII (Board)}, School Name}{2023}
+% \begin{highlights}\item Score: 95\%\end{highlights}
+
+% ====================================================================
+%  SKILLS  (mirror the keywords in the job description)
+% ====================================================================
+\section{Skills}
+\skillrow{Languages}{Python, C++, Java, JavaScript/TypeScript, SQL, Bash}
+\skillrow{Frameworks \& Libraries}{React, Node.js, Express, Django, Spring Boot, Pandas, NumPy}
+\skillrow{Databases \& Cloud}{PostgreSQL, MongoDB, Redis, AWS (EC2, S3), Docker}
+\skillrow{Tools}{Git \& GitHub, Linux, CI/CD, Postman, Jira}
+\skillrow{Core CS}{Data Structures \& Algorithms, OOP, OS, DBMS, Computer Networks, System Design}
+\skillrow{Domain Tools}{[MATLAB, AutoCAD, SolidWorks, Verilog, Arduino, ANSYS -- only if relevant]}
+
+% ====================================================================
+%  EXPERIENCE  (internships, research, freelance; newest first)
+% ====================================================================
+\section{Experience}
+\entry{\textbf{Software Engineering Intern, Company Name} -- City / Remote}{May 2026 -- Jul 2026}
+\begin{highlights}
+    \item Built [feature] using [tech], reducing [metric] by \textbf{X\%} for [N users / requests].
+    \item Designed and shipped [service] handling \textbf{X req/sec}, improving [latency / accuracy] from A to B.
+\end{highlights}
+
+\entry{\textbf{Research Intern, Lab / Professor / Org} -- City}{Dec 2025 -- Feb 2026}
+\begin{highlights}
+    \item Developed [model / system] reaching \textbf{X\%} accuracy vs. baseline Y\% on [dataset].
+\end{highlights}
+
+% ====================================================================
+%  PROJECTS  (2 to 4; most job-relevant first)
+% ====================================================================
+\section{Projects}
+\entry{\textbf{Project Name} $|$ \textit{Next.js, PostgreSQL, Redis, Docker}}{\link{https://github.com/you/project}{github.com}}
+\begin{highlights}
+    \item Built [what it does] for \textbf{X users}; deployed with CI/CD (GitHub Actions) on [platform].
+    \item Implemented [key technical feature], improving [metric] by \textbf{X\%}.
+\end{highlights}
+
+\entry{\textbf{Project Name 2} $|$ \textit{Python, PyTorch, FastAPI}}{\link{https://github.com/you/project2}{github.com}}
+\begin{highlights}
+    \item Trained [model] on [dataset size], reaching \textbf{X\%} F1; served via REST API at \textbf{<X ms} latency.
+\end{highlights}
+
+% ====================================================================
+%  ACHIEVEMENTS  (always include rank / prize / number)
+% ====================================================================
+\section{Achievements}
+\entry{\textbf{1st Prize -- Hackathon Name}, Organiser}{2026}
+\begin{highlights}
+    \item Won first place out of \textbf{N teams} for [what you built]; cash prize of ₹XX,000.
+\end{highlights}
+
+\entry{\textbf{Smart India Hackathon -- Finalist / Winner}}{2025}
+\begin{highlights}
+    \item Built [solution] in a [N]-member team, ranking \textbf{2nd} nationally.
+\end{highlights}
+
+% ====================================================================
+%  PUBLICATIONS / PATENTS  (delete if none)
+% ====================================================================
+% \section{Publications}
+% \oneline{\textbf{Paper Title}, Author1, \textbf{You}. \textit{Conference / Journal}}{2026}
+
+% ====================================================================
+%  LEADERSHIP & VOLUNTEERING
+% ====================================================================
+\section{Leadership \& Volunteering}
+\entry{\textbf{Technical Lead, Club / Society Name}}{March 2026 -- Present}
+\begin{highlights}
+    \item Led [N] members to organise [event] with \textbf{X+} participants; mentored [N] juniors in [skill].
+\end{highlights}
+
+% ====================================================================
+%  CERTIFICATIONS
+% ====================================================================
+\section{Certifications}
+\oneline{\textbf{AWS Certified Cloud Practitioner} -- Amazon Web Services}{2026}
+\oneline{\textbf{Programming in C} -- Infosys Springboard}{2025}
+
+\end{document}

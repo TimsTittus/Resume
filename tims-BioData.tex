@@ -4,14 +4,6 @@
 %%  ONE FILE, TWO USES. Pick the mode on the line below:
 %%     \matrimonialtrue   -> marriage biodata (family, horoscope, expectations)
 %%     \matrimonialfalse  -> job / general biodata (objective, skills, experience)
-%%
-%%  HOW TO USE
-%%   1. Fill the PERSONAL DATA block once (name, contact, photo).
-%%   2. Put a passport-style photo named  photo.jpg  next to this file
-%%      (upload it to Overleaf). If it is missing, a "Paste photo" box shows.
-%%   3. Edit the \field{Label}{Value} lines. Add a row by copying one line.
-%%      Delete any row you do not want to show.
-%%   4. Education rows:   \eduRow{Degree}{Institution}{Year}{Score}
 %% ====================================================================
 \documentclass[10.5pt, a4paper]{article}
 
@@ -34,16 +26,16 @@
 %  MODE SWITCH  (choose ONE)
 % ====================================================================
 \newif\ifmatrimonial
-\matrimonialtrue
-%\matrimonialfalse
+%\matrimonialtrue
+\matrimonialfalse
 
 % ====================================================================
 %  PERSONAL DATA  (edit once)
 % ====================================================================
-\newcommand{\cvname}{YOUR FULL NAME}
-\newcommand{\cvaddress}{House / Street, Locality, City, State -- PIN}
-\newcommand{\cvphone}{+91 90000 00000}
-\newcommand{\cvemail}{you@email.com}
+\newcommand{\cvname}{TIMS TITTUS}
+\newcommand{\cvaddress}{Kottayam, Kerala}
+\newcommand{\cvphone}{+91 99461 16910}
+\newcommand{\cvemail}{timstittus1@gmail.com}
 \newcommand{\cvphoto}{photo.jpg}
 
 \hypersetup{pdftitle={Biodata - \cvname}, pdfauthor={\cvname}}
@@ -108,7 +100,7 @@
 % ====================================================================
 \ifmatrimonial\else
 \section{Career Objective}
-Motivated [degree] graduate seeking a [role] position where I can apply my skills in [area 1] and [area 2] and grow with the organisation.
+Final-year B.Tech Computer Science and Engineering (Cybersecurity) student seeking a security engineering role where I can apply my skills in offensive security, secure software development, and security product testing.
 \fi
 
 % ====================================================================
@@ -116,22 +108,14 @@ Motivated [degree] graduate seeking a [role] position where I can apply my skill
 % ====================================================================
 \section{Personal Details}
 \begin{details}
-  \field{Date of Birth}{DD Month YYYY}
-  \ifmatrimonial
-    \field{Time and Place of Birth}{HH:MM AM/PM, City}
-  \fi
-  \field{Age}{XX years}
-  \field{Gender}{Male / Female}
-  \field{Height}{5 ft 10 in}
-  \ifmatrimonial
-    \field{Complexion}{Fair / Wheatish}
-    \field{Marital Status}{Unmarried}
-    \field{Religion / Community}{Religion, Community}
-    \field{Mother Tongue}{Language}
-  \fi
-  \field{Languages Known}{English, Hindi, [Language]}
+  % TODO: fill these in, then remove the leading % on each line
+  % \field{Date of Birth}{DD Month YYYY}
+  % \field{Age}{XX years}
+  % \field{Gender}{Male / Female}
+  % \field{Height}{5 ft 10 in}
+  % \field{Languages Known}{English, [Language]}
   \field{Nationality}{Indian}
-  \field{Diet}{Vegetarian / Non-vegetarian}
+  % \field{Diet}{Vegetarian / Non-vegetarian}
 \end{details}
 
 % ====================================================================
@@ -154,9 +138,9 @@ Motivated [degree] graduate seeking a [role] position where I can apply my skill
 % ====================================================================
 \section{Education}
 \begin{eduTable}
-  \eduRow{B.Tech (Computer Science and Engineering)}{College Name, University}{2023--2027}{CGPA 8.50}
-  \eduRow{Class XII}{School Name, Board}{2023}{95\%}
-  \eduRow{Class X}{School Name, Board}{2021}{96\%}
+  \eduRow{B.Tech (Computer Science and Engineering -- Cybersecurity)}{St. Joseph's College of Engineering and Technology (SJCET), Palai}{2023--2027}{CGPA 8.59}
+  % \eduRow{Class XII}{School Name, Board}{YYYY}{XX\%}
+  % \eduRow{Class X}{School Name, Board}{YYYY}{XX\%}
 \end{eduTable}
 
 % ====================================================================
@@ -167,20 +151,27 @@ Motivated [degree] graduate seeking a [role] position where I can apply my skill
 \begin{details}
   \field{Occupation}{Designation, Company / Institution}
   \field{Work Location}{City}
-  \field{Annual Income}{Rs. X lakh (optional -- delete if not needed)}
 \end{details}
 \else
 \section{Technical and Professional Skills}
 \begin{details}
-  \field{Languages}{Python, C++, Java, SQL}
-  \field{Tools and Platforms}{Git, Linux, Docker, MS Office}
-  \field{Soft Skills}{Communication, Leadership, Teamwork}
+  \field{Languages}{Python, C, Java, JavaScript, SQL, Bash}
+  \field{Frameworks and Backend}{Next.js, NestJS, PyTorch, Supabase, Redis}
+  \field{Security Tools}{Burp Suite, Nmap, Wireshark, Metasploit, OWASP ZAP, SQLMap, Hashcat, YARA, Sigma}
+  \field{Security Technologies}{EDR, NDR, SIEM, SOC, Threat Intelligence, Vulnerability Assessment, Security Product Testing}
+  \field{Tools and Platforms}{Git \& GitHub, Kali Linux, Arch Linux, Ubuntu, Windows}
+  \field{Soft Skills}{Leadership, Mentoring, Team Coordination}
 \end{details}
 
 \section{Experience and Achievements}
 \begin{itemize}[leftmargin=14pt, itemsep=2pt, topsep=3pt]
-  \item \textbf{Role, Organisation} (Mon YYYY -- Mon YYYY): one line on what you did and the result.
-  \item \textbf{Project / Award}: one line with a number or rank.
+  \item \textbf{Security Product Tester (Intern), Algomox} (May 2026 -- Jul 2026): tested EDR, NDR, XDR, and SIEM products; analysed detection failures across 1,200+ atomic tests into 10 root-cause clusters.
+  \item \textbf{Developer, Kerala Police Cyberdome (Grapnel Team)}: built the CSAM Takedown and Trace Dashboard and the ``Trace an Object'' crowdsourcing platform.
+  \item \textbf{Cybersecurity Analyst, RoomNumber404} (Jul 2025 -- Present): secured community websites and conducted cybersecurity workshops.
+  \item \textbf{Assistant Network Technician, ITTA Cable Network} (Feb 2021 -- Aug 2024): configured and optimized OLTs, routers, and fiber-optic networks.
+  \item \textbf{Winner, Hac'KP 2025} (Kerala Police Cyberdome International Hackathon): Outstanding Performance Award and cash prize.
+  \item \textbf{Best Innovative Agentic AI Solution} (Hackathon): Rs.\ 10,101 prize; \textbf{2nd place}, Smart India Hackathon prelims (Rs.\ 10,000); \textbf{1st Prize}, IEDC District Cluster Level Hackathon (Rs.\ 12,000); \textbf{Top 250}, international CTF.
+  \item \textbf{CTO, IEDC SJCET} (Mar 2026 -- Present); \textbf{WebMaster, IEEE SB SJCET} (Apr 2025 -- Present); Lead, TheNexusProject FOSS Club (Jun -- Oct 2025); College Lead, HackTheBox Kerala SJCET (Mar -- Jun 2025).
 \end{itemize}
 \fi
 
@@ -198,8 +189,8 @@ Motivated [degree] graduate seeking a [role] position where I can apply my skill
 \section{Partner Expectations}
 Brief and respectful, 1 to 2 lines: preferred age range, education, values, location.
 \else
-\section{Hobbies and Interests}
-Reading, Travelling, Music.
+% \section{Hobbies and Interests}
+% TODO: add your hobbies, then remove the leading % on these two lines.
 \fi
 
 % ====================================================================
@@ -211,8 +202,8 @@ I hereby declare that the information furnished above is true and correct to the
 \vspace{0.4cm}
 \noindent
 \begin{minipage}[t]{0.5\textwidth}
-  \textbf{Date:} DD / MM / YYYY\\[4pt]
-  \textbf{Place:} City
+  \textbf{Date:} 24 / 10 / 2026\\[4pt]
+  \textbf{Place:} Kottayam
 \end{minipage}\hfill
 \begin{minipage}[t]{0.4\textwidth}
   \raggedleft
